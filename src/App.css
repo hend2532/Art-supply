@@ -1,0 +1,37 @@
+:root{
+    --main-color:#FF4081;
+    --main-shadow-color:#ff408064;
+}
+.la-belle-aurore-regular {
+    font-family: "La Belle Aurore", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+header{
+    box-shadow: 0px 0px 5px 0px var(--main-shadow-color);
+   background: white;
+}
+.nav-link {
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    padding: 5px 5px;
+    border-bottom: 2px solid var(--main-color);
+  }
+  
+  .active-link {
+    color: var(--main-color);
+    font-weight: bold;
+  }
