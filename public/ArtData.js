@@ -5,7 +5,7 @@ const ArtData = [
       category: "Paint",
       quantity: 15,
       price: 25.99,
-      image: "/assets/art1.jfif",
+      image: "/assets/AcrylicPaintSet.jfif",
       description: "A set of 12 vibrant acrylic paints perfect for canvas and crafts."
     },
     {
@@ -23,7 +23,7 @@ const ArtData = [
       category: "Paper",
       quantity: 20,
       price: 10.00,
-      image: "/assets/art1.jfif",
+      image: "/assets/SketchPadA4.jfif",
       description: "An A4-sized sketch pad with 100 sheets of premium paper."
     },
     {
@@ -32,7 +32,7 @@ const ArtData = [
       category: "Pastels",
       quantity: 12,
       price: 12.75,
-      image: "/assets/art1.jfif",
+      image: "/assets/OilPastels.png",
       description: "Bright and smooth oil pastels suitable for all skill levels."
     },
     {
@@ -41,7 +41,7 @@ const ArtData = [
       category: "Pencils",
       quantity: 10,
       price: 14.99,
-      image: "/assets/art1.jfif",
+      image: "/assets/CharcoalPencilSet.jfif",
       description: "A set of 6 professional-grade charcoal pencils for shading."
     },
     {
@@ -50,7 +50,7 @@ const ArtData = [
       category: "Tools",
       quantity: 5,
       price: 8.99,
-      image: "/assets/art1.jfif",
+      image: "/assets/PaletteKnife.jfif",
       description: "Stainless steel palette knife for mixing and applying paint."
     },
     {
@@ -59,7 +59,7 @@ const ArtData = [
       category: "Canvas",
       quantity: 25,
       price: 30.00,
-      image: "/assets/art1.jfif",
+      image: "/assets/CanvasPanels.png",
       description: "A pack of 10 pre-stretched canvas panels for painting."
     },
     {
@@ -68,7 +68,7 @@ const ArtData = [
       category: "Tools",
       quantity: 3,
       price: 45.50,
-      image: "/assets/art1.jfif",
+      image: "/assets/EaselStand.jfif",
       description: "Adjustable easel stand for studio or outdoor painting."
     },
     {
@@ -77,7 +77,7 @@ const ArtData = [
       category: "Pens",
       quantity: 18,
       price: 22.00,
-      image: "/assets/art1.jfif",
+      image: "/assets/FineLinerPens.jfif",
       description: "A set of 10 fine liner pens ideal for detailed artwork."
     },
     {
@@ -86,7 +86,7 @@ const ArtData = [
       category: "Tools",
       quantity: 7,
       price: 6.99,
-      image: "/assets/art1.jfif",
+      image: "/assets/MixingPalette.jfif",
       description: "Durable plastic mixing palette with multiple wells."
     }
   ];

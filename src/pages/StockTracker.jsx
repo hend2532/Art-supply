@@ -1,22 +1,32 @@
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import ArtData from "/public/ArtData";
-import { useState } from "react";
+
 
 function StockTracker() {
   const { id } = useParams();
-  const [showPopup, setShowPopup] = useState(false); 
-  const [selectedQuantity, setSelectedQuantity] = useState(0); 
-  const [updatedArtData, setUpdatedArtData] = useState(ArtData); 
+  const [quantity, setQuantity] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedQuantity, setSelectedQuantity] = useState(0);
 
+  useEffect(() => {
+    const storedQuantity = localStorage.getItem(`art-quantity-${id}`);
+    const initialQuantity = storedQuantity ? Number(storedQuantity) : getInitialQuantity();
+    setQuantity(initialQuantity);
+  }, [id]);
+
+
+  const getInitialQuantity = () => {
+    const art = ArtData.find((item) => item.id === Number(id));
+    return art ? art.quantity : 0;
+  };
+
+ 
   const handleReorder = () => {
-    const updatedData = updatedArtData.map((art) => {
-      if (art.id === Number(id)) {
-        return { ...art, quantity: selectedQuantity }; 
-      }
-      return art;
-    });
-    setUpdatedArtData(updatedData); 
-    setShowPopup(false);
+    const newQuantity = quantity + selectedQuantity;
+    setQuantity(newQuantity);
+    localStorage.setItem(`art-quantity-${id}`, newQuantity); 
+    setShowPopup(false); 
   };
 
   return (
@@ -24,11 +34,11 @@ function StockTracker() {
       <h1 className="la-belle-aurore-regular text-center m-5 mt-8 text-[25px] font-semibold text-customPink opacity-70">
         Stock Tracker
       </h1>
-      {updatedArtData.map((art) => {
+      {ArtData.map((art) => {
         if (art.id === Number(id)) {
           return (
             <div key={art.id} className="flex flex-col justify-center items-center gap-4">
-              <div className="flex justify-center items-center gap-4">
+              <div className="flex justify-center flex-col md:flex-row items-center gap-4">
                 <img src={art.image} alt={art.name} className="w-48" />
                 <div className="text-[16px]">
                   <h2 className="text-customPink font-semibold">{art.name}</h2>
@@ -37,17 +47,17 @@ function StockTracker() {
                     Price : <span className="text-customPink">${art.price}</span>{" "}
                   </p>
                   <p className="text-gray-500">
-                    Quantity : <span className="text-customPink">{art.quantity}</span>
+                    Quantity : <span className="text-customPink">{quantity}</span>
                   </p>
                   <p className="text-gray-500 w-64 mt-4">
                     Description : <span className="text-customPink block">{art.description}</span>
                   </p>
                 </div>
               </div>
-              {art.quantity < 10 && (
+              {quantity < 10 && (
                 <div className="bg-[#D32F2F] text-white p-3 rounded-md mt-4">
                   <p className="font-semibold">Low Stock Alert!</p>
-                  <p>Only {art.quantity} items left in stock. Please reorder soon!</p> 
+                  <p>Only {quantity} items left in stock. Please reorder soon!</p>
                   <button
                     onClick={() => setShowPopup(true)} 
                     className="text-[13px] text-[#D32F2F] bg-slate-100 rounded-md p-2 m-2 hover:bg-white float-end"
@@ -60,9 +70,11 @@ function StockTracker() {
           );
         }
       })}
+
+
       {showPopup && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-80">
+          <div className="bg-white p-6 m-[auto] rounded-md shadow-lg w-80">
             <h2 className="text-customPink font-semibold text-lg">Reorder Item</h2>
             <div className="mt-4">
               <label htmlFor="quantity" className="block text-gray-500">Enter Quantity :</label>
@@ -71,20 +83,20 @@ function StockTracker() {
                 id="quantity"
                 value={selectedQuantity}
                 onChange={(e) => setSelectedQuantity(Number(e.target.value))}
-                className="w-full text-slate-500 border border-customPink border-1 border-solid outline-none rounded-md p-2 mt-2"
+                className="w-full border rounded-md p-2 mt-2"
                 min="1"
               />
             </div>
             <div className="mt-4 flex justify-between gap-2">
               <button
                 onClick={() => setShowPopup(false)} 
-                className="bg-gray-400 hover:bg-slate-500 text-white p-2 rounded-lg w-full"
+                className="bg-gray-400 hover:bg-gray-500 text-white p-2 rounded-md w-full"
               >
                 Cancel
               </button>
               <button
                 onClick={handleReorder} 
-                className="bg-[#d32f2f] hover:bg-[#d32f2fdc] text-white p-2 rounded-lg w-full"
+                className="bg-[#D32F2F] hover:bg-[#d32f2fd2] text-white p-2 rounded-md w-full"
               >
                 Confirm
               </button>
