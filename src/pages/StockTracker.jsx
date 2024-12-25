@@ -55,7 +55,7 @@ function StockTracker() {
                 </div>
               </div>
               {quantity < 10 && (
-                <div className="bg-[#D32F2F] text-white p-3 rounded-md mt-4 mb-[50px]">
+                <div className="bg-[#D32F2F] text-white p-3 rounded-md mt-4 mb-[70px]">
                   <p className="font-semibold">Low Stock Alert!</p>
                   <p>Only {quantity} items left in stock. Please reorder soon!</p>
                   <button
